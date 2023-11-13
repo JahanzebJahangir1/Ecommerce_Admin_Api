@@ -1,0 +1,62 @@
+##  Database Documentation
+
+
+Table: products
+
+Fields:
+	id: Primary key for the product.
+	name: Name of the product.
+	price: Price of the product.
+	category: Category of the product.
+
+Purpose:
+	The products table stores information about individual products available in the e-commerce system.
+
+Relationships:
+	One-to-Many relationship with the sales table through the product_id field.
+	One-to-Many relationship with the inventory table through the product_id field.
+
+
+Table: sales
+
+Fields:
+	id: Primary key for the sale.
+	product_id: Foreign key referencing the products table.
+	quantity: Quantity of products sold.
+	amount: Sale amount.
+	sale_date: Date of the sale.
+
+Purpose:
+	The sales table tracks individual sales transactions, including the product sold, quantity, amount, and sale date.
+
+Relationships:
+	Many-to-One relationship with the products table through the product_id field.
+
+Table: inventory
+
+Fields:
+	id: Primary key for the inventory entry.
+	product_id: Foreign key referencing the products table.
+	quantity: Current quantity in the inventory.
+	last_updated: Timestamp of the last inventory update.
+
+Purpose:
+	The inventory table maintains information about the current stock levels of each product.
+
+Relationships:
+	Many-to-One relationship with the products table through the product_id field.
+
+
+# Relationships
+
+products and sales:
+	One-to-Many relationship: A product can have multiple sales, but each sale is associated with only one product.
+
+products and inventory:
+	One-to-Many relationship: A product can have multiple inventory entries, but each inventory entry is associated with only one product.
+
+sales and products:
+	Many-to-One relationship: Many sales can be associated with one product.
+
+inventory and products:
+	Many-to-One relationship: Many inventory entries can be associated with one product.
